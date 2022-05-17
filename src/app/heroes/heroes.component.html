@@ -1,0 +1,43 @@
+<h2>My Heroes</h2>
+<ul class="heroes">
+  <!-- 結構指令，通常會有 * 在前面，*ngFor = for loop -->
+  <li *ngFor="let hero of heroes">
+    <!-- [class.selected]，表示當條件成立的時候增加 selected 的 CSS，selected CSS 定義在 heroes.component.css -->
+    <!-- button 綁定 click 事件，並交由 onSelect 處理 -->
+    <!-- (click)，表示通知 Angular 監聽 click 事件 -->
+    <!-- <button
+      [class.selected]="hero === selectedHero"
+      type="button"
+      (click)="onSelect(hero)"
+    >
+      <span class="badge">{{ hero.id }}</span>
+      <span class="name">{{ hero.name }}</span>
+    </button> -->
+    <a routerLink="/detail/{{ hero.id }}">
+      <span class="badge">{{ hero.id }}</span> {{ hero.name }}
+    </a>
+    <button
+      type="button"
+      class="delete"
+      title="delete hero"
+      (click)="delete(hero)"
+    >
+      x
+    </button>
+  </li>
+</ul>
+<!-- [hero]="selectedHero"：[傳遞的變數名稱]="傳遞的變數值" -->
+<!-- <app-hero-detail [hero]="selectedHero"></app-hero-detail> -->
+<div>
+  <label for="new-hero">Hero name: </label>
+  <input id="new-hero" #heroName />
+
+  <!-- 按了之後將 name 傳給 add()，然後清空 name -->
+  <button
+    type="button"
+    class="add-button"
+    (click)="add(heroName.value); heroName.value = ''"
+  >
+    Add hero
+  </button>
+</div>

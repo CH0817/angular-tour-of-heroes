@@ -1,0 +1,14 @@
+<!-- 結構指令，通常會有 * 在前面，*ngIf = if 判斷式 -->
+<div *ngIf="hero">
+  <!-- uppercase 是 pipe，功能為自動轉大寫 -->
+  <h2>{{ hero.name | uppercase }} Details</h2>
+  <p><span>id: </span>{{ hero.id }}</p>
+  <p><span>name: </span>{{ hero.name }}</p>
+  <div>
+    <label for="name">Hero name: </label>
+    <!-- [(ngModel)]，是資料雙向綁定 object & HTML，需在 app.module.ts 中的 NgModule 增加 imports -->
+    <input id="name" [(ngModel)]="hero.name" placeholder="name" />
+  </div>
+  <button type="button" (click)="goBack()">go back</button>
+  <button type="button" (click)="save()">save</button>
+</div>
